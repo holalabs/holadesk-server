@@ -1,0 +1,30 @@
+{
+  "author": "Holalabs <admin@holalabs.com> (https://holalabs.com)",
+  "name": "Holadesk",
+  "description": "First distributed desktop",
+  "version": "0.1.0",
+  "homepage": "https://desk.holalabs.com",
+  "repository": {
+    "type": "git",
+    "url": "https://holalabs@bitbucket.org/holalabs/on.git"
+  },
+  "dependencies": {
+    "forever":"0.10.0",
+    "mongoose":"3.1.0",
+    "passport":"0.1.12",
+    "passport-local":"0.1.6",
+    "connect-flash":"0.1.x",
+    "mailchimp":"0.9.1",
+    "jade":"0.27.2",
+    "express":"3.0.0rc4",
+    "express-namespace":"0.1.1",
+    "bcrypt":"0.7.1",
+    "adm-zip":"0.1.5",
+    "nodemailer":"0.3.28"
+    },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}

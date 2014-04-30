@@ -1,0 +1,25 @@
+extends layoutstoreadmin
+
+block body
+  div(class='featured')
+    div(class='featured_wrap clearfix')
+      div(class='page_titles')
+        h1 Login
+
+  div(class='primary')
+    div(class='primary_wrap')
+      div(class='content wide')
+        div(style='width:400px; margin:auto; padding:30px;', class='box0')
+          - if (message)
+            div(class='box box3 left')
+              p= message
+          form(action='/store/login', method='POST', id='login', class='commentform')
+            p
+              input(type='text', name="username", required)
+              label(for="username") Username
+            p
+              input(type='password', name="password", required)
+              label(for="password") Password
+            p(class='submit')
+              input(type='submit', class='submit', value='Login')
+              a(href='/store/forgot', style='margin-left:15px;') Forgot your password?

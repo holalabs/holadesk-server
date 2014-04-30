@@ -1,0 +1,56 @@
+!!! 5
+html(lang="en")
+  head
+    title= 'Holadesk Store'
+    link(rel='shortcut icon', href='https://desk.holalabs.com/files/2012/03/holaio_favicon_small.png', type='image/png')
+    link(rel='stylesheet', href='https://desk.holalabs.com/wp-content/themes/hulk/style.css')
+    link(href='https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic', rel='stylesheet')
+    link(rel='stylesheet', href='https://desk.holalabs.com/iopanel/stylemin.css')
+    script(type='text/javascript')
+      (function(d,c){var a,b,g,e;a=d.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===d.location.protocol?"https:":"http:")+'//api.mixpanel.com/site_media/js/api/mixpanel.2.js';b=d.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);c._i=[];c.init=function(a,d,f){var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";g="disable track track_links track_forms register register_once unregister identify name_tag set_config".split(" ");for(e=0;e<
+      g.length;e++)(function(a){b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}})(g[e]);c._i.push([a,d,f])};window.mixpanel=c})(document,[]);
+      mixpanel.init("aa85d1b7b507d2042292c7085c2de06b");
+    meta(charset='utf-8')
+  body(class='home page page-template')
+    div(class='header')
+      div(class='header_wrap clearfix')
+        div(class='brand')
+          a(href='/store/admin', title='Holadesk', rel='home')
+            img(src='http://desk.holalabs.com/files/2012/10/holadesk_logo.png', width=157, height=36, alt='Holadesk')
+        ul(class='nav1')
+          li(class='menu-item')
+            a(href='/store') Store
+          li(class='menu-item')
+            a(href='/devs') Docs
+          - if (!user)
+            li(class='menu-item')
+              a(href='/store/login') Login
+          - else
+            li(class='menu-item')
+              a(href='/store/logout') Logout
+    block body
+    div(class='footer')
+      div(class='footer_wrap clearfix')
+        div(class='notes')
+          | © 
+          a(href='http://holalabs.com') Holalabs
+          |  2012
+        ul(class='nav2')
+          li(class='menu-item')
+            a(href="/about/") About
+          li(class='menu-item')
+            a(href="http://holalabs.com/contact/") Contact
+          li(class='menu-item')
+            a(href='http://io.holalabs.com/terms/') Terms
+          li(class='menu-item')
+            a(href='http://holalabs.com/privacy') Privacy
+      a(style='display:none;', href='http://flow.mixpanel.com/f/partner')
+        img(src='https://mixpanel.com/site_media/images/partner/badge_light.png', width=114, height=36, alt='Real Time Web Analytics')
+
+script('text/javascript')
+  var uvOptions = {};
+    (function() {
+      var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+      uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/Hoxg4ffGp76oI6PliPT8A.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+    })();

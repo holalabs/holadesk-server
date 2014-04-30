@@ -1,0 +1,38 @@
+extends layoutstore
+
+block body
+  #appListToolbar
+    .left
+        input#searchApps(type='text', placeholder='Search apps...', onkeyup='Apps.search()')
+      p.info Featured
+      .right
+        button(onclick='javascript:window.location="/store"') Back
+  #appView(style='display:block;')
+    #appViewHeader
+      img(src='#{url}/icon.png')
+      #appViewHeaderInfo
+        h1 #{app.name}
+        h5 #{app.description}
+        button#appViewButton.green(onclick='javascript:window.parent.Apps.toggleMode(); window.parent.Apps.install("#{app.id}")') Install in holadesk
+      #appViewSocial
+        button Share
+        ul.dropdown(data-for="#appViewSocial button")
+          li
+            a(href='https://www.facebook.com/sharer/sharer.php?u=#{sharelink}&t=#{sharetext}', target='_blank', id='facebookShareWidget')
+              i.icon-facebook
+              | Facebook
+          li
+            a(href='https://twitter.com/intent/tweet?status=#{sharetext}+#{sharelink}', target='_blank', id='twitterShareWidget')
+              i.icon-twitter
+              | Twitter
+          li
+            a(href='https://plus.google.com/share?url=#{sharelink}', target='_blank', id='googleShareWidget')
+              i.icon-google
+              | Google+
+    p
+      | Developer: 
+      strong#appViewAuthor #{dev}
+      br
+      br
+      | Version: 
+      strong#appViewVersion #{app.version}

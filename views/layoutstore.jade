@@ -1,0 +1,41 @@
+!!! 5
+html(lang="en")
+  head
+    head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes')
+    title holadesk Store
+    link(rel="stylesheet", type="text/css", href="https://desk.holalabs.com/desk/framework/holadeskui.css")
+    link(rel="stylesheet", type="text/css", href="https://desk.holalabs.com/desk/desk.css")
+    link(rel='stylesheet', type="text/css", href='https://desk.holalabs.com/desk/store.css')
+    script(src="https://desk.holalabs.com/desk/libs/jquery-1.7.1.min.js")
+    script(src="https://desk.holalabs.com/desk/framework/holadeskui.js")
+    script(type='text/javascript')
+      (function(d,c){var a,b,g,e;a=d.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===d.location.protocol?"https:":"http:")+'//api.mixpanel.com/site_media/js/api/mixpanel.2.js';b=d.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);c._i=[];c.init=function(a,d,f){var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";g="disable track track_links track_forms register register_once unregister identify name_tag set_config".split(" ");for(e=0;e<
+      g.length;e++)(function(a){b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}})(g[e]);c._i.push([a,d,f])};window.mixpanel=c})(document,[]);
+      mixpanel.init("aa85d1b7b507d2042292c7085c2de06b");
+    script
+      holadeskUI();
+  body
+    aside#categoryList
+      a(href='/store', title='Holadesk', rel='home')
+        img(src='http://desk.holalabs.com/files/2012/10/holadesk_logo.png', width=157, height=36, alt='Holadesk')
+      ul
+        - each category in categories
+          a(href='/store/category/'+category.name)
+            li #{category.name}
+    block body
+    footer
+      | © 
+      a(href='http://holalabs.com') Holalabs
+      |  2012
+      a(style='display:none;', href='http://flow.mixpanel.com/f/partner')
+        img(src='https://mixpanel.com/site_media/images/partner/badge_light.png', width=114, height=36, alt='Real Time Web Analytics')
+
+script('text/javascript')
+  var uvOptions = {};
+    (function() {
+      var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+      uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/Hoxg4ffGp76oI6PliPT8A.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+    })();

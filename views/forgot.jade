@@ -1,0 +1,26 @@
+extends layoutstoreadmin
+
+block body
+  div(class='featured')
+    div(class='featured_wrap clearfix')
+      div(class='page_titles')
+        h1 Recover your password
+
+  div(class='primary')
+    div(class='primary_wrap')
+      div(class='content wide')
+        div(style='width:400px; margin:auto; padding:30px;', class='box0')
+          - if (!sent)
+            - if ('undefined' !== typeof errors && errors.length)
+              - each error in errors
+                div(class='box box3 left')
+                  p= error
+            form(action='/store/forgot', method='POST', id='login', class='commentform')
+              p
+                input(type='text', name='email', required)
+                label(for='email') Email
+              p(class='submit')
+                input(type='submit', class='submit', value='Recover')
+          - else
+            div(class='box box2 left')
+              p Your new password has been sent!

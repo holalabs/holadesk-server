@@ -1,0 +1,21 @@
+extends layoutstore
+
+block body
+  #appListToolbar
+    .left
+      form(method='GET', action='/store/search')
+        - if (typeof search !== 'undefined')
+          input#searchApps(type='text', placeholder='Search apps...', name='q', value='#{search}')
+        - else
+          input#searchApps(type='text', placeholder='Search apps...', name='q', onkeyup='Apps.search()')
+      label(style="position: absolute; left: 200px; top: 5px;")
+    p.info Featured
+    .right
+      button(onclick='javascript:window.parent.Apps.toggleMode()') Installed apps
+  #appList
+    - each app in apps
+      - url = app.url.slice(0, app.url.lastIndexOf("/manifest.webapp"))
+        div.appEntry(data-id='#{app.id}')
+          a(href="/store/app/#{app.id}")
+            img(src='#{url}/icon.png')
+            | #{app.name}

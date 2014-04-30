@@ -1,0 +1,23 @@
+extends layoutstoreadmin
+
+block body
+  div(class='featured')
+    div(class='featured_wrap clearfix')
+      div(class='page_titles')
+        h1 Confirm email
+
+  div(class='primary')
+    div(class='primary_wrap')
+      div(class='content wide')
+        div(style='width:400px; margin:auto; padding:30px;')
+          - if ('undefined' !== typeof errors && errors.length)
+            - each error in errors
+                div(class='box box3 left')
+                  p= error
+          - if ('undefined' !== typeof success)
+            div(class='box box2 left')
+              p Check your inbox!
+          div(class='box box1 left')
+            h3 Confirm your email
+            p In order to use holadesk, you need to go to inbox and confirm your email.
+            p If you can't find the automatic email sent to you, please check your spam folder.

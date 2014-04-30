@@ -1,0 +1,68 @@
+extends layoutstoreadmin
+
+block body
+	header
+		h2 Sign up as an holadesk developer
+	p From here you can upload your apps for holadesk and manage them
+	p(id="nameerror") #{error}
+	form(action="/store/admin/signup", method="POST", id="changename", name="changename", onsubmit="return onSubmit()")
+		input(type="text", name="devname", id="devname", placeholder="Developer name", maxlength="20", autofocus, required)
+		label
+			| Do you accept signing up as a developer?
+			input(type="checkbox", name="tos", onchange="return onCheckChange()", required)
+		input(type="submit", id="submit", name="submit", value="submit", disabled="disabled")
+
+	script
+		String.prototype.trim = String.prototype.trim || function trim() { return this.replace(/^\s\s*/, '').replace(/\s\s*$/, ''); };
+		var fieldvalue = document.changename.devname;
+		fieldvalue.addEventListener("input", function(e) {
+			document.getElementById("nameerror").innerHTML="";	
+			var checkvalue = document.changename.tos;
+			fieldvalue.value = fieldvalue.value.replace(/\s{2,}/g, ' ');
+			var text = fieldvalue.value;
+			var submit = document.getElementById("submit");
+
+			if(text.length > 0 && checkvalue.checked) {
+				submit.disabled = false;
+			} else {
+				submit.disabled = true;
+			}
+		}, false);
+
+		function onCheckChange() {
+			document.getElementById("nameerror").innerHTML="";	
+			var checkvalue = document.changename.tos;
+			fieldvalue.value = fieldvalue.value.trim();
+			var text = fieldvalue.value;
+			var submit = document.getElementById("submit");
+
+			console.log(checkvalue.checked);
+			console.log(text.length);
+			if(text.length > 0 && checkvalue.checked) {
+				submit.disabled = false;
+				return true
+			}
+			
+			submit.disabled = true;
+			return false;
+		}
+
+		function onSubmit() {
+			fieldvalue.value = fieldvalue.value.trim().replace(/\s{2,}/g, ' ');
+			if (fieldvalue.value.length <= 0) {
+				document.getElementById("nameerror").innerHTML="You have to introduce a name that not only contains whitespaces.";
+				return false;
+			}
+			if (!checkvalue.checked) {
+				document.getElementById("nameerror").innerHTML="You have to accept signing up as a developer.";
+				return false;
+			}
+			return true;
+		}
+
+		function verifyString(str) {
+			str = str.trim();
+			// /^[a-zA-Z0-9\-_ ’'‘]$/.test(str);
+			str = str.replace(/\s{2,}/g, ' ');
+			return str;
+		}

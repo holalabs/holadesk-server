@@ -1,0 +1,90 @@
+extends layoutstoreadmin
+
+block body
+	div(class='featured')
+		div(class='featured_wrap clearfix')
+			div(class='page_titles')
+				h1 Edit app
+	div(class='primary')
+		div(class='primary_wrap')
+			div(class='content')
+				p#error
+				p Name: 
+					strong #{app.name}
+				p Description: 
+					strong #{app.description}
+				p Version: 
+					strong #{app.version}
+				//
+					p Permissions:
+						for permission in app.permissions
+							strong= permission
+				form(action="/store/admin/app/#{app._id}", method="POST", id="uploadapp", name="uploadapp", enctype="multipart/form-data")
+					p
+						label Choose category:
+						select(name="category")
+							for category in categories
+								if app.category != null && category._id == app.category.toString()
+									option(value=category._id, selected)= category.name
+								else
+									option(value=category._id)= category.name
+					p
+						label Published
+						- if (app.published)
+							input(type="checkbox", name="published", value="true", checked)
+						- else
+							input(type="checkbox", name="published", value="true")
+					p
+						- each error in errors
+							p.uploaderror= error
+						p#uploaderror
+						label
+						| URL to your Application Manifest:
+						input(type="text", name="urlupload", id="urlupload", value=app.url, size="50", placeholder="Your app's manifest url starting with http:// or https://", required)
+					p
+						label
+						| Would you like to update your Application Manifest?
+						input(type="checkbox", name="updatemanifest", value="true")
+					p
+						input(type="submit", id="submit", name="submit", value="Update", disabled)
+						a(href="#", onclick="removeApp()") Remove app
+
+	script
+		var url = document.uploadapp.urlupload;
+		var urltext = url.value;
+		var submit = document.getElementById("submit");
+
+		if(urltext.length == 0 || urltext.slice(urltext.lastIndexOf(".")) != ".webapp" || urltext.slice(0, 4) != "http") {
+				submit.disabled = true;
+			} else {
+				submit.disabled = false;
+		}
+
+		function checkInput() {
+			document.getElementById("uploaderror").innerHTML="";	
+			url.value = url.value.trim().replace(/\s{1,}/g, '');
+
+			urltext = url.value;
+
+			if(urltext.length == 0 || urltext.slice(urltext.lastIndexOf(".")) != ".webapp" || urltext.slice(0, 4) != "http") {
+				submit.disabled = true;
+			} else {
+				submit.disabled = false;
+			}
+		}
+
+		url.addEventListener("input", checkInput, false);
+		function removeApp() {
+			var xhr = new XMLHttpRequest();
+			xhr.open("DELETE", "#{urlpath}/admin/app/#{app._id}", true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4) {
+					if(xhr.status == 200) {
+						window.location = xhr.responseText;
+					}
+				}
+			};
+			xhr.send(null);
+		}
+
